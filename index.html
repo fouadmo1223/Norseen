@@ -833,8 +833,9 @@
     (function () {
       document.querySelectorAll('.clients .marquee-list').forEach(function (track, index) {
         var origChildren = Array.from(track.children);
+        var origCount = origChildren.length;
 
-        // Clone twice — 3 identical sets for seamless CSS loop
+        // Clone twice — 3 sets so the screen is always filled
         [0, 1].forEach(function () {
           origChildren.forEach(function (child) {
             var clone = child.cloneNode(true);
@@ -843,8 +844,24 @@
           });
         });
 
-        // Second row goes opposite direction via CSS
-        if (index % 2 === 1) track.classList.add('reverse');
+        var reverse = index % 2 === 1;
+        var speed = 0.7;
+        var setWidth = 0;
+        var pos = 0;
+
+        function animate() {
+          if (!setWidth) {
+            // Read after first paint so layout is fully complete
+            setWidth = track.scrollWidth / 3;
+            if (reverse) pos = -setWidth;
+          }
+          pos += reverse ? speed : -speed;
+          if (pos <= -setWidth) pos += setWidth;
+          if (pos >= 0) pos -= setWidth;
+          track.style.transform = 'translateX(' + pos + 'px)';
+          requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
       });
     })();
 
