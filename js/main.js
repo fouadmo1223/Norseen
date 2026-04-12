@@ -305,4 +305,44 @@ document.addEventListener('DOMContentLoaded', () => {
       ease: 'power3.out'
     }, "-=0.6"); 
   }
+
+  // ===== SECTION HEADERS ENTRANCE ANIMATION =====
+  const sectionHeads = document.querySelectorAll('.section-head');
+  sectionHeads.forEach(head => {
+    // If it's the contact section head, skip it since it's already animated in the contact timeline
+    if (head.classList.contains('contact-section-head')) return;
+
+    // We animate the internal span and header text sequentially
+    const children = head.querySelectorAll('span, h3, h2, h4, p');
+    if (children.length > 0) {
+      // Set initial state
+      gsap.set(children, { opacity: 0 });
+      
+      gsap.to(children, {
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power3.inOut',
+        scrollTrigger: {
+          trigger: head,
+          start: 'top 85%', // Triggers when the top of the header hits 85% down the viewport
+          toggleActions: 'play none none none'
+        }
+      });
+    } else {
+      gsap.fromTo(head, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        duration: 1,
+        ease: 'power3.inOut',
+        scrollTrigger: {
+          trigger: head,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      });
+    }
+  });
+
 });
