@@ -1,0 +1,1083 @@
+/* ============================================================
+   RESPONSIVE.CSS — all breakpoints, each containing
+   every section that changes at that screen size.
+
+   Breakpoints:
+   ① ≤ 1199px  — large tablets / small desktops
+   ② ≤  991px  — tablets (landscape → portrait)
+   ③ ≤  767px  — large phones / mobile landscape
+   ④ ≤  575px  — small phones / mobile portrait
+   ============================================================ */
+
+
+/* ============================================================
+   ① MAX-WIDTH: 1199px
+   ============================================================ */
+@media (max-width: 1199px) {
+
+  /* ----- HEADER ----- */
+  .main-head {
+    padding-block: 18px;
+  }
+
+  /* ----- HERO ----- */
+  .hero h1 {
+    font-size: 6vw;
+  }
+
+  .hero .caption {
+    top: 58%;
+    left: 8%;
+  }
+
+  .hero .caption h3 {
+    font-size: 15px;
+  }
+
+  /* ----- SERVICES ----- */
+  .services {
+    padding-block: 80px;
+  }
+
+  .service-list .item {
+    min-height: 60vh;
+  }
+
+  .service-list .item .title h3 {
+    gap: 30px;
+  }
+
+  /* ----- CLIENTS ----- */
+  .clients {
+    padding-block: 80px;
+  }
+
+  /* ----- PROJECTS ----- */
+  .projects {
+    padding-block: 80px;
+  }
+
+  .projects-swiper .item .info {
+    padding: 20px 30px;
+  }
+
+  /* ----- WHY US ----- */
+  .why-us {
+    padding-block: 80px;
+  }
+
+  /* ----- CALL TO ACTION ----- */
+  .callto {
+    padding-block: 80px;
+  }
+
+  /* ----- STEPS ----- */
+  .steps {
+    padding-block: 80px;
+  }
+
+  /* ----- TESTIMONIALS ----- */
+  .testimonials {
+    padding-block: 80px;
+  }
+
+  .testimonials-swiper .comment h3 {
+    font-size: 24px;
+  }
+
+  /* ----- CONTACT ----- */
+  .contact {
+    padding-block: 80px;
+  }
+
+  .contact-box {
+    padding: 40px 32px;
+  }
+
+  /* ----- FOOTER ----- */
+  .footer-huge-logo {
+    max-height: 200px;
+  }
+}
+
+
+/* ============================================================
+   ② MAX-WIDTH: 991px
+   ============================================================ */
+@media (max-width: 991px) {
+
+  /* ----- HEADER ----- */
+  .main-head {
+    padding-block: 16px;
+  }
+
+  .main-head .logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  /* ----- HERO ----- */
+  .hero {
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: 7.5vw;
+    margin-top: 40px;
+  }
+
+  .hero .caption {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-top: 24px;
+    padding: 0;
+  }
+
+  .hero .caption h3 {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .hero .container > img.hero-img {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  /* ----- MARQUEE ----- */
+  .marquee {
+    padding-block: 12px;
+  }
+
+  .marquee-inner {
+    gap: 32px;
+  }
+
+  .marquee-inner h4 {
+    font-size: 0.875rem;
+  }
+
+  .marquee-inner h4 span {
+    font-size: 1.25rem;
+  }
+
+  /* ----- SECTION HEAD ----- */
+  .section-head {
+    margin-bottom: 36px;
+    padding-top: 40px;
+  }
+
+  .section-head span {
+    font-size: 16px;
+  }
+
+  /* ----- SERVICES ----- */
+  .services {
+    padding-block: 60px;
+  }
+
+  .service-list .item {
+    min-height: auto;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .service-list .item .title h3 {
+    font-size: 18px;
+    gap: 16px;
+  }
+
+  .service-list .item .title h3 span {
+    font-size: 18px;
+  }
+
+  .service-list .item .title a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .service-list .item > p {
+    max-width: 100%;
+    font-size: 14px;
+    padding-right: 16px;
+  }
+
+  /* 4 blocks in one row on tablet */
+  .service-list .item .row {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .service-list .item .row > [class*="col-"] {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+
+  .service-list .item .block {
+    max-width: 60px;
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+
+  /* ----- CLIENTS ----- */
+  .clients {
+    padding-block: 60px;
+  }
+
+  .clients .marquee-list .item img {
+    height: 28px;
+  }
+
+  /* ----- PROJECTS ----- */
+  .projects {
+    padding-block: 60px;
+  }
+
+  .projects-swiper .item .info {
+    padding: 16px 20px;
+  }
+
+  .projects-swiper .item .info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .projects-swiper .item .info p {
+    font-size: 14px;
+  }
+
+  .projects-swiper-wrap .swiper-button-next {
+    right: -12px;
+  }
+
+  .projects-swiper-wrap .swiper-button-prev {
+    left: -12px;
+  }
+
+  /* ----- WHY US ----- */
+  .why-us {
+    padding-block: 60px;
+  }
+
+  .why-us .block {
+    padding: 24px 16px 16px;
+    gap: 16px;
+  }
+
+  .why-us .block h4 {
+    font-size: 16px;
+  }
+
+  /* ----- CALL TO ACTION ----- */
+  .callto {
+    padding-block: 60px;
+    min-height: auto;
+  }
+
+  .callto p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .callto .btn {
+    height: 44px;
+    font-size: 16px;
+    padding: 0 24px;
+  }
+
+  /* ----- STEPS ----- */
+  .steps {
+    padding-block: 60px;
+  }
+
+  .step-row {
+    padding-block: 28px;
+    max-height: none;
+  }
+
+  .step-row:hover > .container {
+    transform: none;
+  }
+
+  .steps .title h3 {
+    font-size: 20px;
+    gap: 12px;
+    flex-direction: row;
+    justify-content: flex-start !important;
+  }
+
+  .steps .title h3 span {
+    font-size: 18px;
+  }
+
+  .steps .description p {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .step-deco-img {
+    display: none;
+  }
+
+  /* ----- TESTIMONIALS ----- */
+  .testimonials {
+    padding-block: 60px;
+  }
+
+  .testimonials-swiper .item {
+    padding: 24px 24px;
+  }
+
+  .testimonials-swiper .comment h3 {
+    font-size: 20px;
+    gap: 20px;
+  }
+
+  .testimonials-swiper .comment h3 img {
+    width: 56px;
+  }
+
+  .testimonials-swiper .author {
+    padding-inline-start: 0;
+  }
+
+  /* ----- CONTACT ----- */
+  .contact {
+    padding-block: 60px;
+  }
+
+  .contact-box {
+    padding: 32px 24px;
+  }
+
+  .contact-section-head {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .contact-section-head span,
+  .contact-section-head h3 {
+    text-align: center;
+    display: block;
+  }
+
+  .contact-description {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .contact-info {
+    align-items: center;
+  }
+
+  .contact-info a {
+    justify-content: center !important;
+  }
+
+  .location-info {
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .location-info span {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center !important;
+  }
+
+  .contact-form {
+    margin-top: 32px;
+  }
+
+  /* ----- FOOTER ----- */
+  .footer-huge-logo {
+    max-height: 160px;
+  }
+
+  .footer-bottom .container {
+    flex-direction: column;
+    gap: 12px !important;
+  }
+}
+
+
+/* ============================================================
+   ③ MAX-WIDTH: 767px
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* ----- HEADER ----- */
+  .main-head .inner {
+    gap: 12px;
+  }
+
+  /* ----- HERO ----- */
+  .hero h1 {
+    font-size: 9vw;
+    line-height: 1.35;
+  }
+
+  .hero .caption h3 {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .hero .caption h3 br {
+    display: none;
+  }
+
+  .hero .container > img.hero-img {
+    width: 100%;
+  }
+
+  /* ----- MARQUEE ----- */
+  .marquee-inner {
+    gap: 24px;
+  }
+
+  .marquee-inner h4 {
+    font-size: 0.8rem;
+  }
+
+  /* ----- SECTION HEAD ----- */
+  .section-head {
+    margin-bottom: 28px;
+    padding-top: 32px;
+  }
+
+  .section-head span {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  /* ----- SERVICES ----- */
+  .services {
+    padding-block: 50px;
+  }
+
+  .service-list .item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .service-list .item .title h3 {
+    font-size: 16px;
+    gap: 12px;
+  }
+
+  .service-list .item .title h3 span {
+    font-size: 16px;
+  }
+
+  .service-list .item .title a {
+    width: 36px;
+    height: 36px;
+  }
+
+  .service-list .item .title a img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .service-list .item > p {
+    font-size: 13px;
+    padding-right: 12px;
+  }
+
+  .service-list .item .block h4 {
+    font-size: 13px;
+  }
+
+  /* ----- CLIENTS ----- */
+  .clients {
+    padding-block: 50px;
+  }
+
+  .clients .marquee-list {
+    gap: 32px;
+  }
+
+  .clients .marquee-list .item img {
+    height: 22px;
+  }
+
+  /* ----- PROJECTS ----- */
+  .projects {
+    padding-block: 50px;
+  }
+
+  .projects-swiper .item .info {
+    position: relative;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .projects-swiper .item .info .tags {
+    margin-bottom: 8px;
+  }
+
+  .projects-swiper .item .info .tags span {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+
+  .projects-swiper .item .info h3 {
+    font-size: 18px;
+  }
+
+  .projects-swiper .item .info p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* Stack info content vertically and hide long paragraph on mobile */
+  .projects-swiper .item .info > .d-flex {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start !important;
+  }
+
+  .projects-swiper-wrap .swiper-button-next,
+  .projects-swiper-wrap .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .projects-swiper-wrap .swiper-button-next {
+    right: -6px;
+  }
+
+  .projects-swiper-wrap .swiper-button-prev {
+    left: -6px;
+  }
+
+  /* ----- WHY US ----- */
+  .why-us {
+    padding-block: 50px;
+  }
+
+  .why-us .block {
+    padding: 20px 16px;
+    gap: 12px;
+  }
+
+  .why-us .block img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .why-us .block h4 {
+    font-size: 15px;
+  }
+
+  .why-us .block p {
+    font-size: 13px;
+  }
+
+  /* ----- CALL TO ACTION ----- */
+  .callto {
+    padding-block: 50px;
+  }
+
+  .callto h3 {
+    font-size: clamp(20px, 5vw, 32px);
+  }
+
+  .callto p {
+    font-size: 14px;
+    padding-inline: 8px;
+  }
+
+  .callto .btn {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 20px;
+  }
+
+  /* ----- STEPS ----- */
+  .steps {
+    padding-block: 50px;
+  }
+
+  .step-row {
+    padding-block: 20px;
+  }
+
+  .steps .title h3 {
+    font-size: 18px;
+  }
+
+  .steps .description p {
+    font-size: 13px;
+  }
+
+  /* ----- TESTIMONIALS ----- */
+  .testimonials {
+    padding-block: 50px;
+  }
+
+  .testimonials-swiper .item {
+    padding: 20px 16px;
+  }
+
+  .testimonials-swiper .comment h3 {
+    font-size: 17px;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .testimonials-swiper .comment h3 img {
+    width: 44px;
+  }
+
+  .testimonials-swiper .comment p {
+    font-size: 13px;
+  }
+
+  .testimonials-swiper .author .text h4 {
+    font-size: 16px;
+  }
+
+  .comment::after {
+    max-width: 100%;
+  }
+
+  /* Navigation arrows: keep them at centre-bottom */
+  .testimonials-swiper .swiper-button-next {
+    left: calc(50% - 52px);
+  }
+
+  .testimonials-swiper .swiper-button-prev {
+    right: calc(50% - 52px);
+  }
+
+  /* ----- CONTACT ----- */
+  .contact {
+    padding-block: 50px;
+  }
+
+  .contact-box {
+    padding: 24px 16px;
+    border-radius: 14px;
+  }
+
+  .contact-section-head h3 {
+    font-size: clamp(20px, 5vw, 32px);
+  }
+
+  .contact-description {
+    font-size: 13px;
+  }
+
+  .contact-info a span,
+  .location-info span {
+    font-size: 13px;
+  }
+
+  .contact-form {
+    margin-top: 24px;
+  }
+
+  /* ----- FOOTER ----- */
+  .footer-huge-logo {
+    max-height: 120px;
+  }
+
+  .copyright-text {
+    font-size: 13px;
+  }
+
+  .ejjadh-logo {
+    height: 22px;
+  }
+}
+
+
+/* ============================================================
+   ④ MAX-WIDTH: 575px
+   ============================================================ */
+@media (max-width: 575px) {
+
+  /* ----- HEADER ----- */
+  .main-head {
+    padding-block: 12px;
+  }
+
+  .main-head .logo img {
+    height: 30px;
+  }
+
+  /* ----- HERO ----- */
+  .hero h1 {
+    font-size: 10.5vw;
+  }
+
+  .hero .caption {
+    margin-top: 16px;
+  }
+
+  .hero .caption h3 {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  /* ----- MARQUEE ----- */
+  .marquee {
+    padding-block: 10px;
+  }
+
+  .marquee-inner {
+    gap: 20px;
+  }
+
+  .marquee-inner img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .marquee-inner h4 {
+    font-size: 0.75rem;
+  }
+
+  .marquee-inner h4 span {
+    font-size: 1rem;
+  }
+
+  /* ----- SECTION HEAD ----- */
+  .section-head {
+    margin-bottom: 20px;
+    padding-top: 24px;
+  }
+
+  .section-head span {
+    font-size: 13px;
+  }
+
+  /* ----- SERVICES ----- */
+  .services {
+    padding-block: 40px;
+  }
+
+  .service-list .item {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .service-list .item .title {
+    gap: 12px;
+  }
+
+  .service-list .item .title h3 {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .service-list .item .title h3 span {
+    font-size: 14px;
+  }
+
+  .service-list .item .title a {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .service-list .item .title a img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .service-list .item > p {
+    font-size: 12px;
+    padding-right: 10px;
+    line-height: 1.6;
+  }
+
+  .service-list .item .block h4 {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  /* 2 blocks per row on small phones */
+  .service-list .item .row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .service-list .item .row > [class*="col-"] {
+    flex: 0 0 auto;
+    width: calc(50% - 5px);
+  }
+
+  .service-list .item .block {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+
+  /* ----- CLIENTS ----- */
+  .clients {
+    padding-block: 40px;
+  }
+
+  .clients .section-head {
+    margin-bottom: 28px;
+  }
+
+  .clients .marquee-list {
+    gap: 20px;
+  }
+
+  .clients .marquee-list .item img {
+    height: 18px;
+  }
+
+  /* ----- PROJECTS ----- */
+  .projects {
+    padding-block: 40px;
+  }
+
+  .projects-swiper .item .info {
+    padding: 12px 14px;
+  }
+
+  .projects-swiper .item .info .tags span {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+
+  .projects-swiper .item .info h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .projects-swiper .item .info p {
+    font-size: 12px;
+    /* Hide long paragraph on tiny screens */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .projects-swiper-wrap .swiper-button-next,
+  .projects-swiper-wrap .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+  }
+
+  .projects-swiper-wrap .swiper-button-next img,
+  .projects-swiper-wrap .swiper-button-prev img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .projects-swiper-wrap .swiper-button-next {
+    right: 2px;
+  }
+
+  .projects-swiper-wrap .swiper-button-prev {
+    left: 2px;
+  }
+
+  /* ----- WHY US ----- */
+  .why-us {
+    padding-block: 40px;
+  }
+
+  .why-us .block {
+    padding: 16px 12px;
+    gap: 10px;
+    border-radius: 6px;
+  }
+
+  .why-us .block img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .why-us .block h4 {
+    font-size: 14px;
+  }
+
+  .why-us .block p {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  /* ----- CALL TO ACTION ----- */
+  .callto {
+    padding-block: 40px;
+  }
+
+  .callto h3 {
+    font-size: clamp(18px, 5.5vw, 28px);
+    line-height: 1.5;
+  }
+
+  .callto p {
+    font-size: 13px;
+  }
+
+  .callto .btn {
+    height: 38px;
+    font-size: 13px;
+    padding: 0 16px;
+    text-align: center;
+  }
+
+  /* ----- STEPS ----- */
+  .steps {
+    padding-block: 40px;
+  }
+
+  .step-row {
+    padding-block: 16px;
+  }
+
+  .steps .title h3 {
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .steps .title h3 span {
+    font-size: 15px;
+  }
+
+  .steps .description p {
+    font-size: 12px;
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  /* ----- TESTIMONIALS ----- */
+  .testimonials {
+    padding-block: 40px;
+  }
+
+  .testimonials-swiper .item {
+    padding: 16px 12px;
+  }
+
+  .testimonials-swiper .comment h3 {
+    font-size: 15px;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .testimonials-swiper .comment h3 img {
+    width: 36px;
+  }
+
+  .testimonials-swiper .comment p {
+    font-size: 12px;
+  }
+
+  .testimonials-swiper .author .img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .testimonials-swiper .author .text h4 {
+    font-size: 14px;
+  }
+
+  .testimonials-swiper .author .text span {
+    font-size: 12px;
+  }
+
+  .testimonials-swiper .swiper-button-next,
+  .testimonials-swiper .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .testimonials-swiper .swiper-button-next {
+    left: calc(50% - 48px);
+  }
+
+  .testimonials-swiper .swiper-button-prev {
+    right: calc(50% - 48px);
+  }
+
+  /* ----- CONTACT ----- */
+  .contact {
+    padding-block: 40px;
+  }
+
+  .contact-box {
+    padding: 20px 12px;
+    border-radius: 10px;
+  }
+
+  .contact-section-head h3 {
+    font-size: clamp(18px, 5.5vw, 28px);
+  }
+
+  .contact-section-head span {
+    font-size: 14px;
+  }
+
+  .contact-description {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .contact-info a span,
+  .location-info span {
+    font-size: 12px;
+  }
+
+  .contact-info img,
+  .location-info img {
+    width: 18px;
+  }
+
+  .contact-submit-btn {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  /* ----- SCROLL TO TOP / STICKY WHATSAPP ----- */
+  #scrollToTopBtn {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    left: 4%;
+  }
+
+  .sticky-btn {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .sticky-btn img {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* ----- FOOTER ----- */
+  .footer-huge-logo {
+    max-height: 80px;
+  }
+
+  .footer-bottom {
+    padding: 20px 0;
+  }
+
+  .copyright-text {
+    font-size: 12px;
+  }
+
+  .ejjadh-logo {
+    height: 18px;
+  }
+}

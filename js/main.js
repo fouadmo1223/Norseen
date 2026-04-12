@@ -53,45 +53,79 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== HERO ENTRANCE ANIMATION =====
   (function () {
     const hero = document.querySelector('.hero');
-    if(hero) {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      
-      // Initial state
-      gsap.set('.hero h1, .caption h3, .caption .btn, .hero-img', { opacity: 0 });
-      gsap.set('.main-head', { y: -50, opacity: 0 });
+    if (!hero) return;
 
-      // 1. Initial Zoom-out masking effect 
+    const isDesktop = window.innerWidth >= 992;
+
+    // Initial hidden state — always set regardless of device
+    gsap.set('.hero h1, .caption h3, .caption .btn, .hero-img', { opacity: 0 });
+    gsap.set('.main-head', { y: -50, opacity: 0 });
+
+    if (isDesktop) {
+      // ── Desktop: full zoom-out clip-path sequence ──
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      // 1. Zoom-out masking effect
       tl.from('.hero', {
         clipPath: 'inset(80% 80% 80% 80%)',
         duration: 2.5,
         ease: 'power2.inOut',
       })
-      // 2. Build the sequence after Zoom-out finishes
+      // 2. Cascade elements in after zoom finishes
       .to('.main-head', {
         y: 0,
         opacity: 1,
         duration: 1,
       }, "-=0.2")
-      .fromTo('.hero h1', 
+      .fromTo('.hero h1',
         { y: 80, clipPath: 'inset(100% 0 0 0)' },
         { y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)', duration: 1.2 },
         "-=0.5"
       )
-      .fromTo('.caption h3', 
+      .fromTo('.caption h3',
         { y: 30 },
         { y: 0, opacity: 1, duration: 0.8 },
         "-=0.8"
       )
-      .fromTo('.caption .btn', 
+      .fromTo('.caption .btn',
         { scale: 0.8 },
         { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' },
         "-=0.6"
       )
-      .fromTo('.hero-img', 
+      .fromTo('.hero-img',
         { y: 40, scale: 0.95 },
         { y: 0, opacity: 1, scale: 1, duration: 1.2 },
         "-=0.8"
       );
+    } else {
+      // ── Mobile / Tablet: same sequence as desktop, zoom-out skipped ──
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.to('.main-head', {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+        })
+        .fromTo('.hero h1',
+          { y: 80, clipPath: 'inset(100% 0 0 0)' },
+          { y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)', duration: 1.2 },
+          "-=0.5"
+        )
+        .fromTo('.caption h3',
+          { y: 30 },
+          { y: 0, opacity: 1, duration: 0.8 },
+          "-=0.8"
+        )
+        .fromTo('.caption .btn',
+          { scale: 0.8 },
+          { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' },
+          "-=0.6"
+        )
+        .fromTo('.hero-img',
+          { y: 40, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 1.2 },
+          "-=0.8"
+        );
     }
   })();
 
@@ -160,36 +194,40 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   gsap.registerPlugin(ScrollTrigger);
-  const cards = gsap.utils.toArray(".service-list .item");
 
-  cards.forEach((card, index) => {
-    // 1. PINNING LOGIC
-    if (index !== cards.length - 1) {
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top top", 
-        pin: true,
-        pinSpacing: false, 
-        endTrigger: ".service-list",
-        end: "bottom bottom",
-      });
-    }
+  // Services card-pinning only on desktop — mobile stacks normally
+  if (window.innerWidth >= 992) {
+    const cards = gsap.utils.toArray(".service-list .item");
 
-    // 2. DISAPPEARING LOGIC
-    if (index < cards.length - 1) {
-      gsap.to(card, {
-        opacity: 0,
-        scale: 0.9,
-        pointerEvents: "none",
-        scrollTrigger: {
-          trigger: cards[index + 1],
-          start: "top 80%",
-          end: "top 10%",
-          scrub: true,
-        }
-      });
-    }
-  });
+    cards.forEach((card, index) => {
+      // 1. PINNING LOGIC
+      if (index !== cards.length - 1) {
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top top",
+          pin: true,
+          pinSpacing: false,
+          endTrigger: ".service-list",
+          end: "bottom bottom",
+        });
+      }
+
+      // 2. DISAPPEARING LOGIC
+      if (index < cards.length - 1) {
+        gsap.to(card, {
+          opacity: 0,
+          scale: 0.9,
+          pointerEvents: "none",
+          scrollTrigger: {
+            trigger: cards[index + 1],
+            start: "top 80%",
+            end: "top 10%",
+            scrub: true,
+          }
+        });
+      }
+    });
+  }
 
   const scrollTopBtn = document.getElementById('scrollToTopBtn');
   if (scrollTopBtn) {
