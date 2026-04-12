@@ -922,6 +922,48 @@ border: 1px solid #FFFFFF1F;
   will-change: transform;
 }
 
+/* Callto images positioning */
+.callto img.position-absolute {
+  width: auto;
+  height: auto;
+  animation: bounce 2s infinite;
+}
+
+.callto img.top-10 {
+  top: 10%;
+}
+
+.callto img.bottom-10 {
+  bottom: 10%;
+}
+
+.callto img.start-10 {
+  right: 10%;
+}
+
+.callto img.end-10 {
+  left: 10%;
+}
+
+
+.callto img.end-20 {
+  left: 20%;
+}
+
+.callto img.start-20 {
+  right: 20%;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
 .callto::after {
     content: "";
     position: absolute;
