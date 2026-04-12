@@ -345,46 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ===== SLIDERS APPEAR & DISAPPEAR ANIMATION =====
-  const sliders = document.querySelectorAll('.projects-swiper-wrap, .testimonials-swiper');
-  sliders.forEach(slider => {
-    gsap.fromTo(slider, {
-      opacity: 0,
-      scale: 0.95
-    }, {
-      opacity: 1,
-      scale: 1,
-      duration: 1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: slider,
-        start: 'top 85%',
-        end: 'bottom 15%',
-        toggleActions: 'play reverse play reverse'
-      }
-    });
 
-    // Stagger in the individual swiper elements
-    const slides = slider.querySelectorAll('.swiper-slide');
-    if (slides.length > 0) {
-      gsap.fromTo(slides, {
-        opacity: 0,
-        x: 60
-      }, {
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: slider,
-          start: 'top 85%',
-          end: 'bottom 15%',
-          toggleActions: 'play reverse play reverse'
-        }
-      });
-    }
-  });
 
   // ===== FEATURES (WHY-US) ENTRANCE ANIMATION =====
   const featuresSection = document.querySelector('.why-us');
@@ -405,6 +366,78 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: featuresSection.querySelector('.row'),
           start: 'top 85%',
           toggleActions: 'play reverse play reverse'
+        }
+      });
+    }
+  }
+
+  // ===== PREMIUM CALL-TO-ACTION (CALLTO) ANIMATION =====
+  const calltoSection = document.querySelector('.callto');
+  if (calltoSection) {
+    const calltoTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: calltoSection,
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // 1. Slightly zoom the background container to give depth
+    calltoTl.fromTo(calltoSection, {
+      backgroundSize: '120%'
+    }, {
+      backgroundSize: '100%',
+      duration: 1.5,
+      ease: 'power2.out'
+    })
+    
+    // 2. Cascade the inner text elements up with a dramatic fade
+    .fromTo(calltoSection.querySelectorAll('h3, p'), {
+      opacity: 0,
+      y: 50,
+      scale: 0.95
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }, "-=1.0")
+
+    // 3. Button pops in luxuriously
+    .fromTo(calltoSection.querySelector('.btn'), {
+      opacity: 0,
+      y: 20,
+      scale: 0.8
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.6,
+      ease: 'back.out(1.5)'
+    }, "-=0.4");
+  }
+
+  // ===== STEPS SECTION ENTRANCE ANIMATION =====
+  const stepsSection = document.querySelector('.steps');
+  if (stepsSection) {
+    const stepRows = stepsSection.querySelectorAll('.step-row');
+    if (stepRows.length > 0) {
+      // Create a stagger animation for all step rows
+      gsap.fromTo(stepRows, {
+        opacity: 0,
+        x: 100
+      }, {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        stagger: 0.3,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: stepsSection.querySelector('.steps-list'),
+          start: 'top 80%',
+          toggleActions: 'play none none none'
         }
       });
     }
