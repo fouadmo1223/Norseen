@@ -345,4 +345,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ===== SLIDERS APPEAR & DISAPPEAR ANIMATION =====
+  const sliders = document.querySelectorAll('.projects-swiper-wrap, .testimonials-swiper');
+  sliders.forEach(slider => {
+    gsap.fromTo(slider, {
+      opacity: 0,
+      scale: 0.95
+    }, {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: slider,
+        start: 'top 85%',
+        end: 'bottom 15%',
+        toggleActions: 'play reverse play reverse'
+      }
+    });
+
+    // Stagger in the individual swiper elements
+    const slides = slider.querySelectorAll('.swiper-slide');
+    if (slides.length > 0) {
+      gsap.fromTo(slides, {
+        opacity: 0,
+        x: 60
+      }, {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: slider,
+          start: 'top 85%',
+          end: 'bottom 15%',
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+    }
+  });
+
+  // ===== FEATURES (WHY-US) ENTRANCE ANIMATION =====
+  const featuresSection = document.querySelector('.why-us');
+  if (featuresSection) {
+    const featureBlocks = featuresSection.querySelectorAll('.col-lg-3, .col-md-6');
+    
+    if (featureBlocks.length > 0) {
+      gsap.fromTo(featureBlocks, {
+        opacity: 0,
+        y: 40
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2, // Stagger each block one after another
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: featuresSection.querySelector('.row'),
+          start: 'top 85%',
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+    }
+  }
+
 });
