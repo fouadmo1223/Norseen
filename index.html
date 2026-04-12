@@ -755,17 +755,72 @@
       </div>
     </div>
 
-    <div class="contact">
+    <div class="contact position-relative">
       <div class="container">
-        <div class="box">
-          <div class="row">
-            <div class="col-lg-6 col-12">
-
+        <div class="box contact-box">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-12 order-lg-1">
+              <div class="contact-text">
+                <div class="section-head text-end contact-section-head" data-placeholder="">
+                  <span>تواصل معنا</span>
+                  <h3>
+                    صمم هويتك البصرية الآن <br /> مع <b>نورسين</b>
+                  </h3>
+                </div>
+                <p class="contact-description">حول رؤيتك إلى علامة تجارية مميزة بخطة مدروسة تعكس تميزك<br /> وتبدأ من الفهم العميق لأهدافك.</p>
+                <div class="contact-info d-flex flex-column gap-3 mb-4">
+                  <a href="tel:+966595180519" class="d-flex align-items-center gap-3 justify-content-end text-decoration-none" dir="ltr">
+                    <span>+966 595 180 519</span> <img src="assets/phone.svg" alt="phone" />
+                  </a>
+                  <a href="mailto:info@nourscene.com" class="d-flex align-items-center gap-3 justify-content-end text-decoration-none" dir="ltr">
+                    <span>info@nourscene.com</span> <img src="assets/email.svg" alt="email" />
+                  </a>
+                  <div class="d-flex align-items-start gap-3 justify-content-start location-info">
+                    <img src="assets/map-marker.svg" alt="location" /><span>المكتب الرئيسي، بجوار مركز صيرفي ميجا مول، مركز الحجاز 2، جدة</span> 
+                  </div>
+                </div>
+                <div class="social-links d-flex align-items-center gap-3 justify-content-start mt-4">
+                  <a href="#" class="text-decoration-none"><img src="assets/tiktok.svg" alt="TikTok" /></a>
+                  <a href="#" class="text-decoration-none"><img src="assets/instagram.svg" alt="Instagram" /></a>
+                  <a href="#" class="text-decoration-none"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
+                  <a href="#" class="text-decoration-none"><img src="assets/facebook.svg" alt="Facebook" /></a>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-6 col-12"></div>
+            <div class="col-lg-6 col-12 order-lg-2">
+              <div class="contact-form pe-lg-5" >
+                <form>
+                  <div class="form-group mb-4">
+                    <input type="text" class="form-control custom-input" placeholder="الإسم" />
+                  </div>
+                  <div class="form-group mb-4">
+                    <input type="email" class="form-control custom-input" placeholder="البريد الإلكتروني" />
+                  </div>
+                  <div class="form-group mb-4 position-relative custom-dropdown">
+                    <div class="custom-input form-control d-flex justify-content-between align-items-center" style="cursor: pointer;" id="serviceTypeDropdown">
+                      <span class="selected-value" style="opacity: 0.7;">نوع الخدمة</span>
+                      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E" alt="arrow" style="width: 16px; transition: transform 0.3s; transform-origin: center;" class="dropdown-arrow" />
+                    </div>
+                    <ul class="dropdown-options list-unstyled position-absolute w-100" style="top: 100%; left: 0; background: #161118; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 8px; margin-top: 5px; opacity: 0; pointer-events: none; transform: translateY(-10px); transition: all 0.3s ease; z-index: 10; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                      <li class="dropdown-option" data-value="1" style="padding: 12px 15px; color: #fff; cursor: pointer; border-radius: 8px; transition: 0.2s;">تصميم هوية بصرية</li>
+                      <li class="dropdown-option" data-value="2" style="padding: 12px 15px; color: #fff; cursor: pointer; border-radius: 8px; transition: 0.2s;">استراتيجية العلامة التجارية</li>
+                    </ul>
+                    <input type="hidden" name="serviceType" id="serviceTypeValue" value="" />
+                  </div>
+                  <div class="form-group mb-5">
+                    <textarea class="form-control custom-input" placeholder="تفاصيل المشروع" rows="1"></textarea>
+                  </div>
+                  <button type="submit" class="submit-btn btn w-100 contact-submit-btn">إرسال</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      
+      <!-- Purple Glow Effect -->
+      <div class="glow-effect left-glow"></div>
+      <div class="glow-effect right-glow"></div>
     </div>
 
   </main>
@@ -775,6 +830,12 @@
 
 
   <div class="overlay"></div>
+
+  <button id="scrollToTopBtn" aria-label="scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <a href="https://api.whatsapp.com/send?phone=966593800612" class="sticky-btn" target="_blank" rel="noreferrer"
     aria-label="whatsapp">
@@ -966,6 +1027,122 @@ cards.forEach((card, index) => {
   }
 });
 
+const scrollTopBtn = document.getElementById('scrollToTopBtn');
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    lenis.scrollTo(0, { 
+      duration: 2.5, 
+      easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+    });
+  });
+
+  // Toggle button visibility based on scroll position
+  lenis.on('scroll', (e) => {
+    const vh150 = window.innerHeight * 1.5;
+    if (e.scroll > vh150) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+
+  // ===== CUSTOM PREMIUM DROPDOWN LOGIC =====
+  const dropdownToggle = document.getElementById('serviceTypeDropdown');
+  if (dropdownToggle) {
+    const dropdownOptions = document.querySelector('.dropdown-options');
+    const hiddenInput = document.getElementById('serviceTypeValue');
+    const selectedValue = dropdownToggle.querySelector('.selected-value');
+    const arrow = dropdownToggle.querySelector('.dropdown-arrow');
+
+    dropdownToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdownOptions.style.opacity === '1';
+      if (isOpen) {
+        dropdownOptions.style.opacity = '0';
+        dropdownOptions.style.pointerEvents = 'none';
+        dropdownOptions.style.transform = 'translateY(-10px)';
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        dropdownOptions.style.opacity = '1';
+        dropdownOptions.style.pointerEvents = 'auto';
+        dropdownOptions.style.transform = 'translateY(0)';
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    });
+
+    document.querySelectorAll('.dropdown-option').forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedValue.textContent = e.target.textContent;
+        selectedValue.style.opacity = '1';
+        hiddenInput.value = e.target.getAttribute('data-value');
+        dropdownOptions.style.opacity = '0';
+        dropdownOptions.style.pointerEvents = 'none';
+        dropdownOptions.style.transform = 'translateY(-10px)';
+        arrow.style.transform = 'rotate(0deg)';
+      });
+      // Add modern hover states
+      option.addEventListener('mouseenter', () => option.style.background = 'rgba(255, 255, 255, 0.05)');
+      option.addEventListener('mouseleave', () => option.style.background = 'transparent');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!dropdownOptions.contains(e.target)) {
+        dropdownOptions.style.opacity = '0';
+        dropdownOptions.style.pointerEvents = 'none';
+        dropdownOptions.style.transform = 'translateY(-10px)';
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
+}
+
+    // ===== CONTACT SECTION GSAP ANIMATION =====
+    const contactSection = document.querySelector('.contact');
+    if (contactSection) {
+      const contactTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: contactSection,
+          start: 'top 80%', // Animates when top of section is 80% down the viewport
+          toggleActions: 'play none none none'
+        }
+      });
+
+      // 1. Fade up the main container box
+      contactTimeline.from('.contact-box', {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+      })
+
+      // 2. Fade in the background glows
+      .from('.contact .glow-effect', {
+        opacity: 0,
+        duration: 1.5,
+        ease: 'power2.inOut'
+      }, "<") // Start at same time as container
+      
+      // 3. Stagger in the text elements (moving from right)
+      .from(['.contact-section-head', '.contact-description', '.contact-info', '.social-links'], {
+        x: 40, 
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out'
+      }, "-=0.4") // Start before the container finishes
+      
+      // 4. Form scale in
+      .from('.contact-form', {
+        scale: 0.95,
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+      }, "-=0.6"); 
+    }
   </script>
 </body>
 
