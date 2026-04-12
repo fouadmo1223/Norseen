@@ -756,6 +756,7 @@ html body.invert {
 .projects-swiper .item {
   position: relative;
   height: 100%;
+  border-radius: 16px;
 }
 
 .projects-swiper .item > img {
@@ -763,6 +764,7 @@ html body.invert {
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 16px;
 }
 
 .projects-swiper .item .info {
@@ -911,6 +913,7 @@ border: 1px solid #FFFFFF1F;
 /* ===== CALL TO ACTION ===== */
 .callto {
   padding-block: 80px;
+  min-height: 450px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -947,8 +950,8 @@ border: 1px solid #FFFFFF1F;
 
 .callto h3 {
   color: #fff;
-  font-size: clamp(26px, 3.5vw, 48px);
-  font-weight: 700;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 800;
   line-height: 1.4;
 }
 
@@ -958,16 +961,16 @@ border: 1px solid #FFFFFF1F;
 }
 
 .callto p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
   line-height: 1.8;
-  max-width: 500px;
+  max-width: 540px;
 }
 
 .callto .btn {
   height: 48px;
   padding: 0 36px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* ===== SERVICES ACCORDION ===== */
