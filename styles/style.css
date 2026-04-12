@@ -1400,7 +1400,7 @@ background: linear-gradient(148.37deg, rgba(99, 63, 147, 0.32) 40.65%, rgba(136,
 .contact-box {
 border: 1px solid #FFFFFF66;
 border-radius: 20px;
-padding: 60px 40px;
+padding: 50px 40px;
 background: #0E091552;
 backdrop-filter: blur(20px);
 max-width: 1100px;
@@ -1409,15 +1409,16 @@ margin: 0 auto;
 }
 
 .contact-section-head {
-  text-align: right;
+  text-align: start;
   margin-bottom: 20px;
   padding-top: 0;
 }
 
 .contact-section-head span {
-  color: #92E9D2;
-  text-align: right;
+  color: var(--color-secondary);
+  text-align: start;
   display: block;
+  font-size: 18px;
   margin-bottom: 15px;
 }
 
@@ -1433,15 +1434,15 @@ margin: 0 auto;
 }
 
 .contact-description {
-  color: #FFFFFFB2;
-  text-align: right;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: start;
   margin-bottom: 40px;
   font-size: 15px;
   line-height: 1.8;
 }
 
 .contact-info {
-  text-align: right;
+  text-align: start;
 }
 
 .contact-info a {
@@ -1449,19 +1450,19 @@ margin: 0 auto;
 }
 
 .contact-info img {
-  width: 20px;
+  width: 24px;
   filter: brightness(0) invert(1);
   opacity: 0.7;
 }
 
 .location-info span {
-  text-align: right;
+  text-align: start;
   max-width: 300px;
   color: #FFFFFFB2;
 }
 
 .location-info img {
-  width: 20px;
+  width: 24px;
   margin-top: 4px;
   filter: brightness(0) invert(1);
   opacity: 0.7;
@@ -1591,6 +1592,46 @@ background: linear-gradient(44.94deg, #92E9D2 2.99%, #DB00FF 51.77%, #633F93 97.
 #scrollToTopBtn.visible:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 6px 20px rgba(219, 0, 255, 0.6);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background-color: var(--color-background);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-top {
+  width: 100%;
+}
+
+.footer-huge-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  max-height: 250px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px 0;
+  background-color: var(--color-background);
+}
+
+.copyright-text {
+  color: #FFFFFF80;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.ejjadh-logo {
+  height: 28px;
+  opacity: 0.9;
 }
 
 /*# sourceMappingURL=style.css.map */

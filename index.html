@@ -824,9 +824,22 @@
     </div>
 
   </main>
-  <footer>
-
+  <footer class="footer">
+    <div class="footer-top">
+      <img src="assets/nourscen.png" alt="Nourscen" class="footer-huge-logo w-100" />
+    </div>
+    <div class="footer-bottom text-center">
+      <div class="container d-flex justify-content-center align-items-center gap-3 flex-wrap">
+        <a href="https://ejjadh.sa/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/ejjadh.png" alt="إجادة" class="ejjadh-logo" />
+        </a>
+        <span class="copyright-text" >جميع الحقوق محفوظة لشركة نورسين © <span id="currentYear"></span></span>
+      </div>
+    </div>
   </footer>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
 
 
   <div class="overlay"></div>
