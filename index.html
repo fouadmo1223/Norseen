@@ -858,12 +858,16 @@
       prevent: (node) => node.classList.contains('no-lenis'),
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
 
-    requestAnimationFrame(raf);
+    // Tell GSAP to use Lenis's `raf` in its ticker loop to prevent jank
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    // Disable GSAP's lag smoothing to prevent fighting with Lenis
+    gsap.ticker.lagSmoothing(0);
 
     AOS.init({
       once: true,
@@ -949,7 +953,7 @@
           pos += reverse ? speed : -speed;
           if (pos <= -setWidth) pos += setWidth;
           if (pos >= 0) pos -= setWidth;
-          track.style.transform = 'translateX(' + pos + 'px)';
+          track.style.transform = 'translate3d(' + pos + 'px, 0, 0)';
           requestAnimationFrame(animate);
         }
         requestAnimationFrame(animate);
@@ -983,7 +987,7 @@
       function animate() {
         pos -= speed;
         if (pos <= -setWidth) pos += setWidth;
-        track.style.transform = `translateX(calc(${pos}px + 200px))`;
+        track.style.transform = `translate3d(calc(${pos}px + 200px), 0, 0)`;
         requestAnimationFrame(animate);
       }
 
