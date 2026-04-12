@@ -782,8 +782,8 @@
   </a>
 
   <!-- Javascript Files -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="https://unpkg.com/lenis@1.3.17/dist/lenis.min.js"></script>
@@ -859,18 +859,6 @@
     //   });
     // })();
 
-    // ===== SERVICES ACCORDION =====
-    (function () {
-      const items = document.querySelectorAll('.service-list .item');
-      items.forEach(function (item) {
-        item.querySelector('.title').addEventListener('click', function () {
-          const isActive = item.classList.contains('active');
-          items.forEach(function (el) { el.classList.remove('active'); });
-          if (!isActive) item.classList.add('active');
-        });
-      });
-    })();
-
     // ===== CLIENTS MARQUEE =====
     (function () {
       document.querySelectorAll('.clients .marquee-list').forEach(function (track, index) {
@@ -940,6 +928,43 @@
 
       animate();
     })();
+
+    gsap.registerPlugin(ScrollTrigger);
+
+const cards = gsap.utils.toArray(".service-list .item");
+
+
+
+cards.forEach((card, index) => {
+  // 1. PINNING LOGIC
+  // This keeps the card stuck at the top
+  if (index !== cards.length - 1) {
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top top", 
+      pin: true,
+      pinSpacing: false, 
+      endTrigger: ".service-list",
+      end: "bottom bottom",
+    });
+  }
+
+  // 2. DISAPPEARING LOGIC (The Fix)
+  // This fades out the CURRENT card when the NEXT card starts to cover it
+  if (index < cards.length - 1) {
+    gsap.to(card, {
+      opacity: 0,      // Makes it disappear
+      scale: 0.9,      // Optional: adds a slight shrink effect
+      pointerEvents: "none", // Ensures you can't click hidden buttons
+      scrollTrigger: {
+        trigger: cards[index + 1], // Start fading when the next card arrives
+        start: "top 80%",          // Adjust these values to control
+        end: "top 10%",            // when it becomes fully invisible
+        scrub: true,
+      }
+    });
+  }
+});
 
   </script>
 </body>

@@ -559,12 +559,34 @@ html body.invert {
     pointer-events: none;
     z-index: 0;
 }
+.service-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 
 .service-list .item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: -1px;
-  padding-block: 28px;
+  position: relative;
+  width: 100%;
+  /* High z-index or background is key so cards don't look transparent when stacking */
+  background-color: transparent; /* Match your site's dark background */
+  
+  /* Setting a min-height ensures cards cover enough of the viewport */
+  min-height: 70vh; 
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* Add some padding-top to prevent cards from hitting the very top edge */
+  padding-top: 40px;
+  transition: opacity 0.3s ease-out;
 }
+
+/* .service-list .item:not(:first-child) {
+  box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5);
+} */
 
 .service-list .item .title {
   cursor: pointer;
@@ -657,27 +679,14 @@ html body.invert {
   z-index: 1;
 }
 
-/* ===== SERVICES ACCORDION ===== */
-.service-list .item .title {
-  cursor: pointer;
-  user-select: none;
-}
-
 .service-list .item > p,
 .service-list .item > .row {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.45s ease, opacity 0.35s ease, margin 0.35s ease;
-  margin-top: 0;
-}
-
-.service-list .item.active > p,
-.service-list .item.active > .row {
-  max-height: 800px;
+  max-height: none;
+  overflow: visible;
   opacity: 1;
   margin-top: 1rem;
 }
+
 /* ===== CLIENTS ===== */
 .clients {
   padding-block: 100px;
