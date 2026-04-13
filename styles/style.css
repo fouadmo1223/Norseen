@@ -612,7 +612,7 @@ html body.invert {
   background-color: transparent; /* Match your site's dark background */
   
   /* Setting a min-height ensures cards cover enough of the viewport */
-  min-height: 70vh; 
+  min-height: 60vh; 
   margin-bottom: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   
@@ -687,7 +687,7 @@ html body.invert {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 298 / 200;
 }
 .service-list .item .block img {
   width: 100%;
@@ -710,7 +710,7 @@ html body.invert {
   justify-content: center;
   text-align: center;
   color: #fff;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1.5;
   z-index: 1;
