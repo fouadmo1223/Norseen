@@ -42,11 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.ticker.lagSmoothing(0);
   }
 
-  if (!isMobile) {
-    AOS.init({
-      once: true,
-    });
-  }
+
 
   const projectsSwiper = new Swiper('.projects-swiper', {
     slidesPerView: 1,
