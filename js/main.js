@@ -195,6 +195,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // ===== SERVICES ACCORDION (mobile ≤ 991px) =====
+  (function () {
+    const items = document.querySelectorAll('.service-list .item');
+    if (!items.length) return;
+
+    items.forEach(function (item) {
+      item.querySelector('.title').addEventListener('click', function (e) {
+        if (window.innerWidth > 991) return;
+        if (e.target.closest('a')) return;
+
+        var isActive = item.classList.contains('active');
+        items.forEach(function (i) { i.classList.remove('active'); });
+        if (!isActive) item.classList.add('active');
+      });
+    });
+
+    // Open first item on small screens by default
+    if (window.innerWidth <= 991) {
+      items[0].classList.add('active');
+    }
+
+    // Handle resize crossing the 991px boundary
+    var wasSmall = window.innerWidth <= 991;
+    window.addEventListener('resize', function () {
+      var isSmall = window.innerWidth <= 991;
+      if (isSmall && !wasSmall && !document.querySelector('.service-list .item.active')) {
+        items[0].classList.add('active');
+      } else if (!isSmall) {
+        items.forEach(function (i) { i.classList.remove('active'); });
+      }
+      wasSmall = isSmall;
+    });
+  })();
+
   // Services card-pinning only on desktop — mobile stacks normally
   if (window.innerWidth >= 992) {
     const cards = gsap.utils.toArray(".service-list .item");

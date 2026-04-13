@@ -185,6 +185,10 @@
     padding-bottom: 28px;
   }
 
+  .service-list .item .title {
+    cursor: pointer;
+  }
+
   .service-list .item .title h3 {
     font-size: 18px;
     gap: 16px;
@@ -197,6 +201,24 @@
   .service-list .item .title a {
     width: 40px;
     height: 40px;
+  }
+
+  /* Collapse content by default */
+  .service-list .item > p,
+  .service-list .item > .row {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.35s ease;
+  }
+
+  /* Expand when active */
+  .service-list .item.active > p,
+  .service-list .item.active > .row {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1rem;
   }
 
   .service-list .item > p {
