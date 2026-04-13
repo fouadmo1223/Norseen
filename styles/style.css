@@ -716,18 +716,10 @@ html body.invert {
 
 .clients .marquee-wrap {
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-.clients .marquee-wrap::before,
-.clients .marquee-wrap::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  z-index: 2;
-  pointer-events: none;
-}
 
 
 
