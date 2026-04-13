@@ -692,6 +692,7 @@ html body.invert {
 .clients {
   padding-block: 100px;
   position: relative;
+  overflow: hidden;
 }
 
 /* Top-right glow blob */
@@ -717,9 +718,21 @@ html body.invert {
 .clients .marquee-wrap {
   position: relative;
   width: 100%;
+  max-width: 100vw;
   overflow: hidden;
+  contain: paint;
 }
 
+.clients .marquee-wrap::before,
+.clients .marquee-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  z-index: 2;
+  pointer-events: none;
+}
 
 
 
@@ -762,12 +775,12 @@ html body.invert {
 }
 
 @keyframes clients-left {
-  from { transform: translateX(108%); }
-  to   { transform: translateX(-40%); }
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
 }
 @keyframes clients-right {
-  from { transform: translateX(-40%); }
-  to   { transform: translateX(108%); }
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
 }
 
 /* ===== PROJECTS ===== */
