@@ -339,6 +339,106 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ===== CONTACT FORM SUBMIT =====
+  (function () {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    function showPopup(message, type) {
+      const popup = document.getElementById('formStatusPopup');
+      if (!popup) return;
+      popup.textContent = message;
+      popup.classList.remove('show', 'success', 'error');
+      popup.classList.add(type === 'success' ? 'success' : 'error');
+      requestAnimationFrame(() => popup.classList.add('show'));
+      setTimeout(() => popup.classList.remove('show'), 3500);
+    }
+
+    function normalizeErrorMessage(result) {
+      if (Array.isArray(result?.errors) && result.errors.length) {
+        return result.errors
+          .map((err) => (err?.msg || '').trim())
+          .filter(Boolean)
+          .join(' - ');
+      }
+      return result?.message || 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.';
+    }
+
+    const nameInput = document.getElementById('contactName');
+    const emailInput = document.getElementById('contactEmail');
+    const phoneInput = document.getElementById('contactPhone');
+    const messageInput = document.getElementById('contactMessage');
+    const serviceTypeInput = document.getElementById('serviceTypeValue');
+    const serviceTypeLabel = document.querySelector('#serviceTypeDropdown .selected-value');
+    const submitBtn = contactForm.querySelector('.contact-submit-btn');
+
+    contactForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const fullName = (nameInput?.value || '').trim();
+      if (!fullName) {
+        showPopup('يرجى إدخال الاسم.', 'error');
+        return;
+      }
+      const nameParts = fullName.split(/\s+/).filter(Boolean);
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(' ') || firstName;
+      const email = (emailInput?.value || '').trim();
+      const phoneNumber = (phoneInput?.value || '').trim();
+      const rawMessage = (messageInput?.value || '').trim();
+      const serviceText = serviceTypeInput?.value && serviceTypeLabel
+        ? `\nنوع الخدمة: ${serviceTypeLabel.textContent.trim()}`
+        : '';
+      const message = `${rawMessage}${serviceText}`.trim() || ' ';
+
+      if (!email || !phoneNumber) {
+        showPopup('يرجى تعبئة الاسم والبريد الإلكتروني ورقم الجوال.', 'error');
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'جاري الإرسال...';
+      }
+
+      try {
+        const response = await fetch('https://nourseen.ejjadh.info/api/contacts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            message,
+            phoneNumber
+          })
+        });
+
+        const result = await response.json().catch(() => ({}));
+        if (response.ok && result?.success) {
+          showPopup('تم إرسال الرسالة بنجاح', 'success');
+          contactForm.reset();
+          if (serviceTypeInput) serviceTypeInput.value = '';
+          if (serviceTypeLabel) {
+            serviceTypeLabel.textContent = 'نوع الخدمة';
+            serviceTypeLabel.style.opacity = '0.7';
+          }
+        } else {
+          showPopup(normalizeErrorMessage(result), 'error');
+        }
+      } catch (error) {
+        showPopup('حدث خطأ أثناء الإرسال. حاول مرة أخرى.', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'إرسال';
+        }
+      }
+    });
+  })();
+
   // ===== CONTACT SECTION GSAP ANIMATION =====
   const contactSection = document.querySelector('.contact');
   if (contactSection) {
