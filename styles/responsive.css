@@ -205,20 +205,20 @@
     padding-right: 16px;
   }
 
-  /* 4 blocks in one row on tablet */
+  /* 2 blocks per row on tablets and below until 1199px */
   .service-list .item .row {
-    flex-wrap: nowrap;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
   .service-list .item .row > [class*="col-"] {
     flex: 0 0 auto;
-    width: 25%;
+    width: calc(50% - 8px);
   }
 
   .service-list .item .block {
-    max-width: 60px;
-    width: 60px;
+    max-width: 100%;
+    width: 100%;
     aspect-ratio: 1 / 1;
     margin: 0 auto;
   }
