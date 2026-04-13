@@ -413,6 +413,7 @@ html body.invert {
   align-items: center;
   gap: 48px;
   will-change: transform;
+  animation: marquee-scroll 20s linear infinite;
 }
 
 .marquee-inner > div {
@@ -761,6 +762,11 @@ html body.invert {
 }
 .clients .marquee-list.reverse {
   animation: clients-right 40s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @keyframes clients-left {
