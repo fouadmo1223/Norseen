@@ -192,8 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // ===== SERVICES ACCORDION (mobile ≤ 991px) =====
-  (function () {
+  // ===== SERVICES ACCORDION (mobile ≤ 991px) — temporarily disabled =====
+  /* (function () {
     const items = document.querySelectorAll('.service-list .item');
     if (!items.length) return;
 
@@ -224,41 +224,39 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       wasSmall = isSmall;
     });
-  })();
+  })(); */
 
-  // Services card-pinning only on desktop — mobile stacks normally
-  if (window.innerWidth >= 992) {
-    const cards = gsap.utils.toArray(".service-list .item");
+  // Services card-pinning (desktop + mobile)
+  const cards = gsap.utils.toArray(".service-list .item");
 
-    cards.forEach((card, index) => {
-      // 1. PINNING LOGIC
-      if (index !== cards.length - 1) {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top top",
-          pin: true,
-          pinSpacing: false,
-          endTrigger: ".service-list",
-          end: "bottom bottom",
-        });
-      }
+  cards.forEach((card, index) => {
+    // 1. PINNING LOGIC
+    if (index !== cards.length - 1) {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top top",
+        pin: true,
+        pinSpacing: false,
+        endTrigger: ".service-list",
+        end: "bottom bottom",
+      });
+    }
 
-      // 2. DISAPPEARING LOGIC
-      if (index < cards.length - 1) {
-        gsap.to(card, {
-          opacity: 0,
-          scale: 0.9,
-          pointerEvents: "none",
-          scrollTrigger: {
-            trigger: cards[index + 1],
-            start: "top 50%",
-            end: "top 10%",
-            scrub: true,
-          }
-        });
-      }
-    });
-  }
+    // 2. DISAPPEARING LOGIC
+    if (index < cards.length - 1) {
+      gsap.to(card, {
+        opacity: 0,
+        scale: 0.9,
+        pointerEvents: "none",
+        scrollTrigger: {
+          trigger: cards[index + 1],
+          start: "top 50%",
+          end: "top 10%",
+          scrub: true,
+        }
+      });
+    }
+  });
 
   const scrollTopBtn = document.getElementById('scrollToTopBtn');
   if (scrollTopBtn) {

@@ -203,7 +203,7 @@
     height: 40px;
   }
 
-  /* Collapse content by default */
+  /* Accordion collapse/expand — temporarily disabled
   .service-list .item > p,
   .service-list .item > .row {
     max-height: 0;
@@ -213,13 +213,12 @@
     transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.35s ease;
   }
 
-  /* Expand when active */
   .service-list .item.active > p,
   .service-list .item.active > .row {
     max-height: 1000px;
     opacity: 1;
     margin-top: 1rem;
-  }
+  } */
 
   .service-list .item > p {
     max-width: 100%;
