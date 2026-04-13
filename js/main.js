@@ -1,10 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const isMobile = window.innerWidth <= 991;
+
+  // Lazy-load non-critical images to reduce initial mobile payload.
+  (function () {
+    const eagerImages = document.querySelectorAll('.hero-img, .logo img');
+    eagerImages.forEach((img) => {
+      img.setAttribute('loading', 'eager');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
+
+    document.querySelectorAll('img').forEach((img) => {
+      if (img.closest('.hero-img, .logo')) return;
+      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
+  })();
+
   const currentYearEl = document.getElementById('currentYear');
   if (currentYearEl) {
     currentYearEl.textContent = new Date().getFullYear();
   }
 
-  const lenis = new Lenis({
+  const lenis = isMobile ? null : new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
     smoothWheel: true,
@@ -12,20 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
     prevent: (node) => node.classList.contains('no-lenis'),
   });
 
-  // Synchronize Lenis scrolling with GSAP's ScrollTrigger
-  lenis.on('scroll', ScrollTrigger.update);
+  if (lenis) {
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
 
-  // Tell GSAP to use Lenis's `raf` in its ticker loop to prevent jank
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+    // Tell GSAP to use Lenis's `raf` in its ticker loop to prevent jank
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
 
-  // Disable GSAP's lag smoothing to prevent fighting with Lenis
-  gsap.ticker.lagSmoothing(0);
+    // Disable GSAP's lag smoothing to prevent fighting with Lenis
+    gsap.ticker.lagSmoothing(0);
+  }
 
-  AOS.init({
-    once: true,
-  });
+  if (!isMobile) {
+    AOS.init({
+      once: true,
+    });
+  }
 
   const projectsSwiper = new Swiper('.projects-swiper', {
     slidesPerView: 1,
@@ -57,80 +78,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isDesktop = window.innerWidth >= 992;
 
-    // Initial hidden state — always set regardless of device
+    // On mobile, do not hide critical hero content before animation.
+    if (!isDesktop) {
+      gsap.set('.hero h1, .caption h3, .caption .btn, .hero-img, .main-head', {
+        clearProps: 'all',
+        opacity: 1
+      });
+      return;
+    }
+
+    // Initial hidden state for desktop only
     gsap.set('.hero h1, .caption h3, .caption .btn, .hero-img', { opacity: 0 });
     gsap.set('.main-head', { y: -50, opacity: 0 });
 
-    if (isDesktop) {
-      // ── Desktop: full zoom-out clip-path sequence ──
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    // ── Desktop: full zoom-out clip-path sequence ──
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      // 1. Zoom-out masking effect
-      tl.from('.hero', {
-        clipPath: 'inset(80% 80% 80% 80%)',
-        duration: 2.5,
-        ease: 'power2.inOut',
-      })
-      // 2. Cascade elements in after zoom finishes
-      .to('.main-head', {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-      }, "-=0.2")
-      .fromTo('.hero h1',
-        { y: 80, clipPath: 'inset(100% 0 0 0)' },
-        { y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)', duration: 1.2 },
-        "-=0.5"
-      )
-      .fromTo('.caption h3',
-        { y: 30 },
-        { y: 0, opacity: 1, duration: 0.8 },
-        "-=0.8"
-      )
-      .fromTo('.caption .btn',
-        { scale: 0.8 },
-        { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' },
-        "-=0.6"
-      )
-      .fromTo('.hero-img',
-        { y: 40, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.2 },
-        "-=0.8"
-      );
-    } else {
-      // ── Mobile / Tablet: same sequence as desktop, zoom-out skipped ──
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      tl.to('.main-head', {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-        })
-        .fromTo('.hero h1',
-          { y: 80, clipPath: 'inset(100% 0 0 0)' },
-          { y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)', duration: 1.2 },
-          "-=0.5"
-        )
-        .fromTo('.caption h3',
-          { y: 30 },
-          { y: 0, opacity: 1, duration: 0.8 },
-          "-=0.8"
-        )
-        .fromTo('.caption .btn',
-          { scale: 0.8 },
-          { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' },
-          "-=0.6"
-        )
-        .fromTo('.hero-img',
-          { y: 40, scale: 0.95 },
-          { y: 0, opacity: 1, scale: 1, duration: 1.2 },
-          "-=0.8"
-        );
-    }
+    // 1. Zoom-out masking effect
+    tl.from('.hero', {
+      clipPath: 'inset(80% 80% 80% 80%)',
+      duration: 2.5,
+      ease: 'power2.inOut',
+    })
+    // 2. Cascade elements in after zoom finishes
+    .to('.main-head', {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+    }, "-=0.2")
+    .fromTo('.hero h1',
+      { y: 80, clipPath: 'inset(100% 0 0 0)' },
+      { y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)', duration: 1.2 },
+      "-=0.5"
+    )
+    .fromTo('.caption h3',
+      { y: 30 },
+      { y: 0, opacity: 1, duration: 0.8 },
+      "-=0.8"
+    )
+    .fromTo('.caption .btn',
+      { scale: 0.8 },
+      { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' },
+      "-=0.6"
+    )
+    .fromTo('.hero-img',
+      { y: 40, scale: 0.95 },
+      { y: 0, opacity: 1, scale: 1, duration: 1.2 },
+      "-=0.8"
+    );
   })();
 
   // ===== CLIENTS MARQUEE =====
   (function () {
+    if (isMobile) return;
     document.querySelectorAll('.clients .marquee-list').forEach(function (track, index) {
       var origChildren = Array.from(track.children);
       var origCount = origChildren.length;
@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== MARQUEE =====
   (function () {
+    if (isMobile) return;
     const track = document.querySelector('.marquee-inner');
     if (!track) return;
 
@@ -254,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
           pointerEvents: "none",
           scrollTrigger: {
             trigger: cards[index + 1],
-            start: "top 80%",
+            start: "top 50%",
             end: "top 10%",
             scrub: true,
           }
@@ -267,21 +268,30 @@ document.addEventListener('DOMContentLoaded', () => {
   if (scrollTopBtn) {
     scrollTopBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      lenis.scrollTo(0, { 
-        duration: 2.5, 
-        easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-      });
+      if (lenis) {
+        lenis.scrollTo(0, {
+          duration: 2.5,
+          easing: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
 
     // Toggle button visibility based on scroll position
-    lenis.on('scroll', (e) => {
+    const onScrollChange = (scrollY) => {
       const vh150 = window.innerHeight * 1.5;
-      if (e.scroll > vh150) {
+      if (scrollY > vh150) {
         scrollTopBtn.classList.add('visible');
       } else {
         scrollTopBtn.classList.remove('visible');
       }
-    });
+    };
+    if (lenis) {
+      lenis.on('scroll', (e) => onScrollChange(e.scroll));
+    } else {
+      window.addEventListener('scroll', () => onScrollChange(window.scrollY), { passive: true });
+    }
 
     // ===== CUSTOM PREMIUM DROPDOWN LOGIC =====
     const dropdownToggle = document.getElementById('serviceTypeDropdown');
