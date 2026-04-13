@@ -778,10 +778,10 @@ html body.invert {
 
 @keyframes clients-left {
   from { transform: translateX(100%); }
-  to   { transform: translateX(-100%); }
+  to   { transform: translateX(-42%); }
 }
 @keyframes clients-right {
-  from { transform: translateX(-100%); }
+  from { transform: translateX(-42%); }
   to   { transform: translateX(100%); }
 }
 
