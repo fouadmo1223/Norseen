@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
     contactTimeline.from('.contact-box', {
       y: 60,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.6,
       ease: 'power3.out'
     })
 
