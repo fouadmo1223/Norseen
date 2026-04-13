@@ -1471,7 +1471,7 @@ background: linear-gradient(148.37deg, rgba(99, 63, 147, 0.32) 40.65%, rgba(136,
   overflow: hidden;
   padding-block: 100px;
   position: relative;
-  background-image: url('../assets/contact-before.png');
+  background-image: url('../assets/contact-before.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
