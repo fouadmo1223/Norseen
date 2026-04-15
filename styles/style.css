@@ -788,7 +788,7 @@ html body.invert {
 }
 
 .clients .marquee-list .item img {
-  height: 36px;
+  height: 60px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
