@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var origCount = origChildren.length;
 
       // Clone twice — 3 sets so the screen is always filled
-      [0, 1].forEach(function () {
+      [0].forEach(function () {
         origChildren.forEach(function (child) {
           var clone = child.cloneNode(true);
           clone.setAttribute('aria-hidden', 'true');

@@ -788,16 +788,19 @@ html body.invert {
 }
 
 .clients .marquee-list .item img {
-  height: 60px;
-  width: auto;
+  height: 130px;
+
+  width: 130px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.55;
-  transition: opacity 0.3s;
+  transition: all 0.3s;
 }
 
 .clients .marquee-list .item img:hover {
   opacity: 1;
+  filter: none;
+
 }
 
 .clients .marquee-list {
