@@ -833,6 +833,7 @@ html body.invert {
 
 .projects-swiper {
   overflow: hidden;
+  border-radius: 16px;
 }
 
 /* Slide card */
@@ -901,6 +902,9 @@ border: 1px solid #FFFFFF1F;
   border: 2px solid #883D9299;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  height: 700px;
+  -webkit-clip-path: inset(0 round 16px);
+  clip-path: inset(0 round 16px);
 }
 
 /* Navigation */

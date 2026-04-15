@@ -61,6 +61,12 @@
     padding: 20px 30px;
   }
 
+  .projects-swiper .swiper-slide {
+    height: 450px;
+    -webkit-clip-path: inset(0 round 16px);
+    clip-path: inset(0 round 16px);
+  }
+
   /* ----- WHY US ----- */
   .why-us {
     padding-block: 80px;
@@ -260,6 +266,12 @@
 
   .projects-swiper .item .info {
     padding: 16px 20px;
+  }
+
+  .projects-swiper .swiper-slide {
+    height: 400px;
+    -webkit-clip-path: inset(0 round 16px);
+    clip-path: inset(0 round 16px);
   }
 
   .projects-swiper .item .info h3 {
@@ -534,8 +546,19 @@
   }
 
   .projects-swiper .item .info {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(23, 16, 33, 0.95), rgba(23, 16, 33, 0.7));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 0 0 12px 12px;
+  }
+
+  .projects-swiper .swiper-slide {
+    height: auto;
+    aspect-ratio: 4 / 4;
   }
 
   .projects-swiper .item .info .tags {
@@ -869,6 +892,16 @@
 
   .projects-swiper .item .info {
     padding: 12px 14px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(23, 16, 33, 0.95), rgba(23, 16, 33, 0.7));
+  }
+
+  .projects-swiper .swiper-slide {
+    height: auto;
+    aspect-ratio: 4 / 4;
   }
 
   .projects-swiper .item .info .tags span {
